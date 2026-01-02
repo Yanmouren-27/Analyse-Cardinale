@@ -42,12 +42,14 @@ def check_subset_sparse(active, ids):
         if x not in parent:
             make(x)
             return x, 0
-        if parent[x] == x:
-            return x, 0
-        r, px = find(parent[x])
-        xr[x] ^= px
-        parent[x] = r
-        return parent[x], xr[x]
+        
+        # Iterative find without path compression (safe with union-by-size)
+        curr = x
+        px = 0
+        while parent[curr] != curr:
+            px ^= xr[curr]
+            curr = parent[curr]
+        return curr, px
 
     def union(a, b, w):
         ra, xa = find(a)

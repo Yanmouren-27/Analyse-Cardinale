@@ -2,6 +2,8 @@ import os, csv, subprocess, sys, random
 from typing import Dict, Tuple, List, Optional
 from ref_check import check_subset_sparse
 
+sys.setrecursionlimit(200000)
+
 DATA_DIR = "data"
 OUT_DIR = "outputs"
 REPORT_DIR = "reports"
