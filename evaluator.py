@@ -208,9 +208,11 @@ def main():
 
     rows = []
     for name in names:
+        print(f"Processing {name}...", flush=True)
         in_path = f"{DATA_DIR}/{name}.in"
         case_seed = int(name.split("_")[1]) * 9109
         sc = evaluate_case(name, in_path, case_seed)
+        print(f"  Score: {sc:.2f}", flush=True)
         rows.append((name, sc))
 
     with open(f"{REPORT_DIR}/scores.csv", "w", newline="", encoding="utf-8") as f:
